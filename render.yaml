@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: springboot-docker-app
+    env: docker
+    plan: starter
+    region: frankfurt
+
+    envVars:
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_EXPIRATION
+        value: "86400000"
+      - key: DB_URL
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASS
+        sync: false
+      - key: PORT
+        value: "8080"
