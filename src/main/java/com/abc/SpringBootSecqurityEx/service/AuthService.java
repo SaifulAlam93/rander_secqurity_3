@@ -72,14 +72,14 @@ public class AuthService {
         validateRegistration(registerRequest);
 
         User user = createUserFromRequest(registerRequest);
-        setUserRoles(user, registerRequest.roles());
+        setUserRoles(user,null);
 
         userRepository.save(user);
         return "User registered successfully";
     }
 
     public String initializeRoles() {
-        String[] defaultRoles = {"USER", "ADMIN", "MODERATOR"};
+        String[] defaultRoles = {"ROLE_USER", "ROLE_ADMIN", "ROLE_MODERATOR"};
         for (String roleName : defaultRoles) {
             if (!roleRepository.existsById(roleName)) {
                 Role role = new Role();
@@ -123,7 +123,7 @@ public class AuthService {
 
         if (roleNames == null || roleNames.isEmpty()) {
             // Default role
-            Role userRole = roleRepository.findByRoleName("USER")
+            Role userRole = roleRepository.findByRoleName("ROLE_USER")
                     .orElseThrow(() -> new RuntimeException("Error: Role USER not found."));
             roles.add(userRole);
         } else {

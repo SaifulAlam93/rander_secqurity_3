@@ -7,6 +7,6 @@ public record RegisterRequest(
         String password,
         String email,
         String firstName,
-        String lastName,
-        Set<String> roles
+        String lastName
+//        Set<String> roles
 ) {}
